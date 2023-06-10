@@ -106,7 +106,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends StatefulWidget {
+  @override
+  State<FavoritesPage> createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -127,8 +132,15 @@ class FavoritesPage extends StatelessWidget {
           Card(
             elevation: 5,
             child: ListTile(
-              leading: Icon(Icons.favorite),
               title: Text(pair.asLowerCase),
+              trailing: Icon(
+                Icons.delete,
+              ),
+              onTap: () {
+                setState(() {
+                  appState.favorites.remove(pair);
+                });
+              },
             ),
           ),
       ],
