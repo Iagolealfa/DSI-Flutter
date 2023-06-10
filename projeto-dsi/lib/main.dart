@@ -115,7 +115,8 @@ class FavoritesPage extends StatelessWidget {
         child: Text('No favorites yet'),
       );
     }
-    return ListView(
+    return GridView.count(
+      crossAxisCount: 2,
       children: [
         Padding(
           padding: const EdgeInsets.all(20),
@@ -123,9 +124,12 @@ class FavoritesPage extends StatelessWidget {
               '${appState.favorites.length} favorites:'),
         ),
         for (var pair in appState.favorites)
-          ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text(pair.asLowerCase),
+          Card(
+            elevation: 5,
+            child: ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text(pair.asLowerCase),
+            ),
           ),
       ],
     );
